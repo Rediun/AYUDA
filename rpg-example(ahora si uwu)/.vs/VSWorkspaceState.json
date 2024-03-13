@@ -1,0 +1,20 @@
+{
+  "OutputFoldersPerTargetSystem": {
+    "Máquina local": [
+      "out\\build\\x64-Debug",
+      "out\\install\\x64-Debug",
+      "out\\build\\x64-Release",
+      "out\\install\\x64-Release"
+    ]
+  },
+  "ExpandedNodes": [
+    "",
+    "\\Character",
+    "\\Combat",
+    "\\Enemy",
+    "\\out",
+    "\\Player"
+  ],
+  "SelectedNode": "\\Enemy\\Enemy.h",
+  "PreviewInSolutionExplorer": false
+}
