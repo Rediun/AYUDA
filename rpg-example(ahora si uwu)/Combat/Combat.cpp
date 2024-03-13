@@ -129,16 +129,19 @@ void Combat::checkParticipantStatus(Character* participant) {
 
 void Combat::checkForFlee(Character* character) {
     bool fleed = character->hasFleed();
-    if (fleed) {
-        if (character->getIsPlayer()) {
-            cout << CYAN << "\t>>>> You are a good Chicken you have fleed the combat <<<<" << RESET<< endl;
-            cout << "\n\n";
-            teamMembers.erase(remove(teamMembers.begin(), teamMembers.end(), character), teamMembers.end());
+    if (character->getHealth() != 0 && character->getHealth() > 0) {
+        if (fleed) {
+            if (character->getIsPlayer()) {
+                cout << CYAN << "\t>>>> You are a good Chicken you have fleed the combat <<<<" << RESET << endl;
+                cout << "\n\n";
+                teamMembers.erase(remove(teamMembers.begin(), teamMembers.end(), character), teamMembers.end());
+            }
+            else {
+                cout << MAGENTA << "\t:D     " << character->getName() << " Go for milk (never come back)     D:" << RESET << endl;
+                cout << "\n\n";
+                enemies.erase(remove(enemies.begin(), enemies.end(), character), enemies.end());
+            }
+            participants.erase(remove(participants.begin(), participants.end(), character), participants.end());
         }
-        else {
-            cout << character->getName() << " has fled the combat" << endl;
-            enemies.erase(remove(enemies.begin(), enemies.end(), character), enemies.end());
-        }
-        participants.erase(remove(participants.begin(), participants.end(), character), participants.end());
     }
 }

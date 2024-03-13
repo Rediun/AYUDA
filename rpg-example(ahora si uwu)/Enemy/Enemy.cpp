@@ -90,29 +90,16 @@ Action Enemy::takeAction(vector<Player*> player) {
     myAction.subscriber = this;
     Character* target = getTarget(player);
     myAction.target = target;
-    myAction.action = [this, target]() {
-        doAttack(target);
-    };
-    return myAction;
-}
-bool Enemy::flee() {
-    cout << YELLOW << "\t:D     " << this->getName() << " go for milk ((s)he never comeback)     D:" << RESET << endl;
-    cout << "\n";
-    cin.get();
-    return true;
-}
+    if ((this->getMaxHealth() * 0.50 >= this->getHealth()) && rand() % 100 < 50) {
+        myAction.action = [this, target]() {
+            this->fleed = true;
+        };
+    }
+    else {
+        myAction.action = [this, target]() {
+            doAttack(target);
+        };
+    }
 
-Action Enemy::Chicken(vector<Player*> teamMembers) {
-    Action myAction;
-    myAction.speed = getSpeed();
-    myAction.subscriber = this;
-    Character* target = nullptr;
-    myAction.target = nullptr;
-    myAction.action = [this, target] {
-        if ((this->getMaxHealth() * 0.40 >= this->getHealth()) && rand() % 100 < 90) {
-             this->flee();
-        }
-        
-    };
     return myAction;
 }

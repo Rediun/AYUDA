@@ -17,9 +17,7 @@ public:
     void doAttack(Character *target) override;
     void takeDamage(int damage) override;
     Character* getTarget(vector<Player*> teamMembers);
-    bool flee();
     Action takeAction(vector<Player*> teamMembers);
-    Action Chicken(vector<Player*> teamMembers);
 };
 
 
