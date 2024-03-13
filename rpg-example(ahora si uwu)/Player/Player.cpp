@@ -41,6 +41,7 @@ void Player::takeDamage(int damage) {
         cout << RED<< "\t------X You have died, You are a really Crap X------" << RESET<< endl;
         cout << "\n";
         cin.get();
+        exit(-1);
     }
     else {
         cout << CYAN << "\t-----> You have taken "  << damage << " damage <-----" << RESET << endl;
@@ -64,8 +65,15 @@ void Player::flee(vector<Enemy*> enemies) {
     else {
         srand(time(NULL));
         int chance = rand() % 100;
-        cout<< "chance: " << chance << endl;
-        fleed = chance > 99;
+        cout<< "chance to be a Chicken: " << chance << endl;
+        cout << "\n";
+        if (fleed = chance > 90) {
+            fleed = true;
+        }
+        else {
+            cout << RED << "\t>>>> You can't be a Chicken <<<<" << RESET << endl;
+            cout << "\n\n";
+        }
     }
 
     this->fleed = fleed;
@@ -97,7 +105,7 @@ void Player::gainExperience(int exp) {
 Character* Player::getTarget(vector<Enemy*> enemies) {
     int targetIndex = 0;
     while (true) {
-        cout << "Choose your Victim" << endl;
+        cout << "Choose your Victim <<<<" << endl;
         for (int i = 0; i < enemies.size(); i++) {
             cout << i  << ". " << enemies[i]->getName() << endl;
         } 
@@ -136,6 +144,7 @@ Action Player::takeAction(vector<Enemy*> enemies) {
             myAction.target = target;
             myAction.action = [this, target]() {
                 doAttack(target);
+                gainExperience(33);
             };
             oks = true;
             break;
@@ -156,7 +165,7 @@ Action Player::takeAction(vector<Enemy*> enemies) {
 void Player::Depression(int depre){
     depression = depression + depre;
     if ((depression > 50) && (rand() % 100 > 90)) {
-        if (rand() % 100 > 10) {
+        if (rand() % 100 > 50) {
             Suicide();
         }
     }
@@ -166,6 +175,8 @@ void Player::Suicide() {
         cout << "\n"; 
         cout << "\t>>>>>>> You, just kill yourself..XD <<<<<<<" << endl;
         cout << "\n";
+        cin.get();
+        exit(-1);
    
 
 }

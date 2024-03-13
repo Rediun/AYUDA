@@ -64,3 +64,4 @@ bool Character::getIsPlayer() {
 bool Character::hasFleed() {
     return fleed;
 }
+

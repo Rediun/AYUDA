@@ -7,6 +7,14 @@
 
 using namespace std;
 
+#define RESET   "\033[0m"      
+#define RED     "\033[31m"      
+#define GREEN   "\033[32m"     
+#define YELLOW  "\033[33m"      
+#define BLUE    "\033[34m"      
+#define MAGENTA "\033[35m"      
+#define CYAN    "\033[36m"    
+
 bool compareSpeed(Character *a, Character *b) {
     return a->getSpeed() > b->getSpeed();
 }
@@ -57,10 +65,10 @@ void Combat::doCombat() {
 
     //No se imprime el nombre del ganador
     if (enemies.size() == 0) {
-        cout << "You have won the combat" << endl;
+        cout << YELLOW << "\t///////////// You win bastard /////////////" << RESET << endl;
     }
     else {
-        cout << "The enemies have won the combat - Game Over" << endl;
+        cout << RED<< "\t///////////// The enemies have won the combat - Game Over /////////////" << RESET << endl;
     }
 }
 
@@ -95,9 +103,16 @@ void Combat::executeActions() {
         Action currentAction = actions.top();
         currentAction.action();
         checkForFlee(currentAction.subscriber);
-        checkParticipantStatus(currentAction.subscriber);
-        checkParticipantStatus(currentAction.target);
-        actions.pop();
+        if (currentAction.target != nullptr) {
+            checkParticipantStatus(currentAction.subscriber);
+            checkParticipantStatus(currentAction.target);
+            actions.pop();
+        }
+        else {
+            while (!actions.empty()) {
+                actions.pop();
+            }
+        }
     }
 }
 void Combat::checkParticipantStatus(Character* participant) {
@@ -116,7 +131,8 @@ void Combat::checkForFlee(Character* character) {
     bool fleed = character->hasFleed();
     if (fleed) {
         if (character->getIsPlayer()) {
-            cout << "You have fled the combat" << endl;
+            cout << CYAN << "\t>>>> You are a good Chicken you have fleed the combat <<<<" << RESET<< endl;
+            cout << "\n\n";
             teamMembers.erase(remove(teamMembers.begin(), teamMembers.end(), character), teamMembers.end());
         }
         else {

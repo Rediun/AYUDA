@@ -50,16 +50,16 @@ The CXX compiler identification is MSVC, found in "D:/descargas el regreso/RPG-A
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: D:/descargas el regreso/RPG-AYUDA/rpg-example(ahora si uwu)/out/build/x64-Debug/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_4e673 && [1/2] Building C object CMakeFiles\cmTC_4e673.dir\CMakeCCompilerABI.c.obj
-[2/2] Linking C executable cmTC_4e673.exe
+Run Build Command(s):C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_eaee7 && [1/2] Building C object CMakeFiles\cmTC_eaee7.dir\CMakeCCompilerABI.c.obj
+[2/2] Linking C executable cmTC_eaee7.exe
 
 
 
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: D:/descargas el regreso/RPG-AYUDA/rpg-example(ahora si uwu)/out/build/x64-Debug/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_5df2b && [1/2] Building CXX object CMakeFiles\cmTC_5df2b.dir\CMakeCXXCompilerABI.cpp.obj
-[2/2] Linking CXX executable cmTC_5df2b.exe
+Run Build Command(s):C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_7300e && [1/2] Building CXX object CMakeFiles\cmTC_7300e.dir\CMakeCXXCompilerABI.cpp.obj
+[2/2] Linking CXX executable cmTC_7300e.exe
 
 
 

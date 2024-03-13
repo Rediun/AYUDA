@@ -1,0 +1,3 @@
+D:/descargas el regreso/RPG-AYUDA/rpg-example(ahora si uwu)/out/build/x64-Release/CMakeFiles/rpg.dir
+D:/descargas el regreso/RPG-AYUDA/rpg-example(ahora si uwu)/out/build/x64-Release/CMakeFiles/edit_cache.dir
+D:/descargas el regreso/RPG-AYUDA/rpg-example(ahora si uwu)/out/build/x64-Release/CMakeFiles/rebuild_cache.dir

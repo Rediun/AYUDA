@@ -73,7 +73,8 @@ Character* Enemy::getTarget(vector<Player *> teamMembers) {
     // Obtiene el miembro del equipo con menos vida
     int targetIndex = 0;
     int lowestHealth = INT_MAX;
-    for(int i=0; i < teamMembers.size(); i++) {
+    for (int i = 0; i < teamMembers.size(); i++) {
+        ;
         if(teamMembers[i]->getHealth() < lowestHealth) {
             lowestHealth = teamMembers[i]->getHealth();
             targetIndex = i;
@@ -91,6 +92,27 @@ Action Enemy::takeAction(vector<Player*> player) {
     myAction.target = target;
     myAction.action = [this, target]() {
         doAttack(target);
+    };
+    return myAction;
+}
+bool Enemy::flee() {
+    cout << YELLOW << "\t:D     " << this->getName() << " go for milk ((s)he never comeback)     D:" << RESET << endl;
+    cout << "\n";
+    cin.get();
+    return true;
+}
+
+Action Enemy::Chicken(vector<Player*> teamMembers) {
+    Action myAction;
+    myAction.speed = getSpeed();
+    myAction.subscriber = this;
+    Character* target = nullptr;
+    myAction.target = nullptr;
+    myAction.action = [this, target] {
+        if ((this->getMaxHealth() * 0.40 >= this->getHealth()) && rand() % 100 < 90) {
+             this->flee();
+        }
+        
     };
     return myAction;
 }
