@@ -18,9 +18,7 @@ public:
     void takeDamage(int damage) override;
     Character* getTarget(vector<Player*> teamMembers);
     
-    ActionResult takeAction(vector<Player*> teamMembers);
-
-    bool flee();
+    Action takeAction(vector<Player*> teamMembers);
 };
 
 

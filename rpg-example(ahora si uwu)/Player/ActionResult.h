@@ -5,14 +5,25 @@
 #ifndef RPG_ACTIONRESULT_H
 #define RPG_ACTIONRESULT_H
 #include "../Character/Character.h"
+#include <functional>
 
-struct ActionResult {
-    Character *target = nullptr;
-    bool fleed = false;
+struct Action {
+    int speed = 0;
+    Character* subscriber = nullptr;
+    Character* target = nullptr;
+    std::function<void(void)> action = nullptr;
 
-    ActionResult(Character *_target, bool _fleed) {
+    Action(std::function<void(void)> _action, int _speed, Character* _subscriber, Character* _target) {
+        action = _action;
+        speed = _speed;
+        subscriber = _subscriber;
         target = _target;
-        fleed = _fleed;
+    }
+    Action() {};
+
+    bool operator<(const Action& p) const
+    {
+        return this->speed < p.speed;
     }
 };
 

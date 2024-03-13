@@ -20,12 +20,16 @@ public:
     Player(string _name, int _health, int _attack, int _defense, int _speed);
     void doAttack(Character *target) override;
     void takeDamage(int damage) override;
+
     Character* getTarget(vector<Enemy*> enemies);
-    bool flee(vector<Enemy*> enemies);
+
+    void flee(vector<Enemy*> enemies);
     void emote();
     void levelUp();
     void gainExperience(int);
-    ActionResult takeAction(vector<Enemy*> enemies);
+
+    Action takeAction(vector<Enemy*> enemies);
+
     void Suicide();
     void Depression(int);
 };

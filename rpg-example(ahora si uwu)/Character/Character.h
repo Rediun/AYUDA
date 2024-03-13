@@ -17,6 +17,7 @@ protected:
     int defense;
     int speed;
     bool isPlayer;
+    bool fleed;
 
 public:
     Character(string, int, int, int, int, bool);
@@ -36,6 +37,7 @@ public:
     int getSpeed();
     string toString();
     bool getIsPlayer();
+    bool hasFleed();
 };
 
 

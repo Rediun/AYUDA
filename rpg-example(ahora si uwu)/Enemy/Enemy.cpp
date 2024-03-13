@@ -26,13 +26,6 @@ Enemy::Enemy(string name, int health, int attack, int defense, int speed) : Char
     maxHealth = health;
 }
 
-bool Enemy::flee() {
-    cout << YELLOW  << "\t:D     " << this->getName() << " go for milk ((s)he never comeback)     D:" << RESET << endl;
-    cout << "\n";
-    cin.get();
-    return true;
-}
-
 int Enemy::getMaxHealth (){
     return maxHealth;
 }
@@ -90,14 +83,14 @@ Character* Enemy::getTarget(vector<Player *> teamMembers) {
     return teamMembers[targetIndex];
 }
 
-ActionResult Enemy::takeAction(vector<Player*> teamMembers) {
-    Character* target = nullptr;
-    bool fleed = false;
-    if ((this->getMaxHealth() * 0.15 >= this->getHealth()) && rand() % 100 < 90) {
-        fleed = flee();
-    } else {
-        target = getTarget(teamMembers);
+Action Enemy::takeAction(vector<Player*> player) {
+    Action myAction;
+    myAction.speed = getSpeed();
+    myAction.subscriber = this;
+    Character* target = getTarget(player);
+    myAction.target = target;
+    myAction.action = [this, target]() {
         doAttack(target);
-    }
-    return ActionResult(target, fleed);
+    };
+    return myAction;
 }

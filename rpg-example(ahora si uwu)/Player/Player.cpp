@@ -54,7 +54,7 @@ void Player::takeDamage(int damage) {
    
 
 
-bool Player::flee(vector<Enemy*> enemies) {
+void Player::flee(vector<Enemy*> enemies) {
     std::sort(enemies.begin(), enemies.end(), compareSpeed);
     Enemy* fastestEnemy = enemies[0];
     bool fleed = false;
@@ -68,7 +68,7 @@ bool Player::flee(vector<Enemy*> enemies) {
         fleed = chance > 99;
     }
 
-    return fleed;
+    this->fleed = fleed;
 }
 
 void Player::emote() {
@@ -113,12 +113,16 @@ Character* Player::getTarget(vector<Enemy*> enemies) {
     return enemies[targetIndex];
 }
 
-ActionResult Player::takeAction(vector<Enemy*> enemies) {
+Action Player::takeAction(vector<Enemy*> enemies) {
     int option = 0;
     bool oks = false;
     Character* target = nullptr;
     bool fleed = false;
+    Action myAction;
     
+    myAction.speed = this->getSpeed();
+    myAction.subscriber = this;
+
     while (oks == false){
         cout << "Choose your action <<<<<<<<<<<<" << endl;
         cout << "1. Attack" << endl;
@@ -129,22 +133,16 @@ ActionResult Player::takeAction(vector<Enemy*> enemies) {
         switch (option) {
         case 1:
             target = getTarget(enemies);
-            doAttack(target);
-            gainExperience(33);
+            myAction.target = target;
+            myAction.action = [this, target]() {
+                doAttack(target);
+            };
             oks = true;
             break;
         case 2:
-            fleed = flee(enemies);
-            if (fleed) {
-                cout << MAGENTA << "\t>>> You have fled <<<" << RESET << endl;
-                cout << "\n";
-                cin.get();
-            }
-            else {
-                cout << RED << "\t>>> You couldn't flee <<<" << RESET << endl;
-                cout << "\n";
-                cin.get();
-            }
+            myAction.action = [this, enemies]() {
+                flee(enemies);
+            };
             oks = true;
             break;
         default:
@@ -153,7 +151,7 @@ ActionResult Player::takeAction(vector<Enemy*> enemies) {
             break;
         }
     }
-    return ActionResult(target, fleed);
+    return myAction;
 }
 void Player::Depression(int depre){
     depression = depression + depre;
