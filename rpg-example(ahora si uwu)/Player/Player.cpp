@@ -23,7 +23,7 @@ bool compareSpeed(Enemy *a, Enemy *b) {
     return a->getSpeed() > b->getSpeed();
 }
 
-Player::Player(char name[40], int health, int attack, int defense, int speed) : Character(name, health, attack, defense, speed, true) {
+Player::Player(char name[40], int health, int attack, int defense, int speed, int level) : Character(name, health, attack, defense, speed, true, level) {
     experience = 0;
     level = 1;
     depression = 0;
@@ -49,7 +49,7 @@ void Player::takeDamage(int damage) {
     else {
         cout << CYAN << "\t-----> You have taken "  << damage << " damage <-----" << RESET << endl;
         cout << "\n";
-        Depression(5);
+        Depression(2);
         cin.get();
     }
 }
@@ -87,14 +87,18 @@ void Player::emote() {
 }
 
 void Player::levelUp() {
-    level++;
+    setLevel(getLevel() + 1);
     setHealth(getHealth() + 10);
     setAttack(getAttack() + 5);
     setDefense(getDefense() + 5);
     setSpeed(getSpeed() + 5);
 
-    cout << YELLOW << "\t>>>>>>>>> Level up bro!!!! Your level current: " << level << " <<<<<<<<<<<<" << RESET << endl;
+
+
+    cout << YELLOW << "\t>>>>>>>>> Level up bro!!!! Your level current: " << getLevel() << " <<<<<<<<<<<<" << RESET << endl;
     cout << "\n\n";
+
+
 }
 
 void Player::gainExperience(int exp) {
@@ -148,8 +152,9 @@ Action Player::takeAction(vector<Enemy*> enemies) {
             myAction.target = target;
             myAction.action = [this, target]() {
                 doAttack(target);
-                gainExperience(5);
+                gainExperience(30);
                 cout << experience << endl;
+                cout << getLevel() << endl;
             };
             oks = true;
             break;

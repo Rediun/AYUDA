@@ -17,7 +17,7 @@ protected:
     int level;
     int depression;
 public:
-    Player(char _name[40], int _health, int _attack, int _defense, int _speed);
+    Player(char _name[40], int _health, int _attack, int _defense, int _speed, int _level);
     void doAttack(Character *target) override;
     void takeDamage(int damage) override;
 
@@ -27,7 +27,6 @@ public:
     void emote();
     void levelUp();
     void gainExperience(int);
-
     Action takeAction(vector<Enemy*> enemies);
 
     void Suicide();

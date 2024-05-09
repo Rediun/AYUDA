@@ -18,9 +18,10 @@ protected:
     int speed;
     bool isPlayer;
     bool fleed;
+    int level;
 
 public:
-    Character(char[], int, int, int, int, bool);
+    Character(char[], int, int, int, int, bool, int);
 
     virtual void doAttack(Character *target) = 0;
     virtual void takeDamage(int damage) = 0;
@@ -38,6 +39,8 @@ public:
     string toString();
     bool getIsPlayer();
     bool hasFleed();
+    int getLevel();
+    void setLevel(int);
 };
 
 

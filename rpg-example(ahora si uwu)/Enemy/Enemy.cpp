@@ -22,8 +22,9 @@ int getRolledAttack(int attack) {
     return (rand() % (attack - lowerLimit)) + lowerLimit;
 }
 
-Enemy::Enemy(char name[40], int health, int attack, int defense, int speed) : Character(name, health, attack, defense, speed, false) {
+Enemy::Enemy(char name[40], int health, int attack, int defense, int speed, int level) : Character(name, health, attack, defense, speed, false, level) {
     maxHealth = health;
+    level = 1;
 }
 
 int Enemy::getMaxHealth (){
@@ -60,11 +61,13 @@ void Enemy::takeDamage(int damage) {
             if (wow = false) {
                 cout << GREEN << "\t---->" << getName() << " has taken " << damage << " damage" << "<----" << RESET << endl;
                 cout << "\n\n";
+                cout << level << endl;
                 cin.get();
             }
             if (wow = true) {
                 cout << GREEN << "\t----> " << getName() << " has taken " << damage << " damage" << " <----" << " [Nice Hit bro]" << RESET << endl;
                 cout << "\n\n";
+                cout << getLevel() << endl;
                 cin.get();
             }
         }
@@ -105,3 +108,16 @@ Action Enemy::takeAction(vector<Player*> player) {
 
     return myAction;
 }
+
+void Enemy::levelup() {
+        this-> setLevel(getLevel() + 1);
+        this -> setHealth(getHealth() + 3);
+        this-> setAttack(getAttack() + 2);
+        this-> setDefense(getDefense() + 2);
+        this-> setSpeed(getSpeed() + 2);
+
+
+        cout << RED << "\t>>>>>>>>> The enemy just level up bro!!!! u are gey lvl: " << getLevel() << " <<<<<<<<<<<<" << RESET << endl;
+        cout << "\n\n";
+    }
+
