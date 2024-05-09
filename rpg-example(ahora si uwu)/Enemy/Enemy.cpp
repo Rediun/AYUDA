@@ -22,7 +22,7 @@ int getRolledAttack(int attack) {
     return (rand() % (attack - lowerLimit)) + lowerLimit;
 }
 
-Enemy::Enemy(string name, int health, int attack, int defense, int speed) : Character(name, health, attack, defense, speed, false) {
+Enemy::Enemy(char name[40], int health, int attack, int defense, int speed) : Character(name, health, attack, defense, speed, false) {
     maxHealth = health;
 }
 
@@ -56,15 +56,17 @@ void Enemy::takeDamage(int damage) {
         }
     }
     else {
-        if (wow = false) {
-            cout << GREEN <<"\t---->" << getName() << " has taken " << damage << " damage" <<"<----" << RESET << endl;
-            cout << "\n\n";
-            cin.get();
-        }
-        if (wow = true) {
-            cout << GREEN << "\t----> " << getName() << " has taken " << damage << " damage" << " <----" << " [Nice Hit bro]" << RESET << endl;
-            cout << "\n\n";
-            cin.get();
+        if (this->fleed != true) {
+            if (wow = false) {
+                cout << GREEN << "\t---->" << getName() << " has taken " << damage << " damage" << "<----" << RESET << endl;
+                cout << "\n\n";
+                cin.get();
+            }
+            if (wow = true) {
+                cout << GREEN << "\t----> " << getName() << " has taken " << damage << " damage" << " <----" << " [Nice Hit bro]" << RESET << endl;
+                cout << "\n\n";
+                cin.get();
+            }
         }
     }
 }

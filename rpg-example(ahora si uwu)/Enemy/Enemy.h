@@ -12,7 +12,7 @@ class Player;
 
 class Enemy: public Character {
 public:
-    Enemy(string, int, int, int, int);
+    Enemy(char[40], int, int, int, int);
     int getMaxHealth();
     void doAttack(Character *target) override;
     void takeDamage(int damage) override;

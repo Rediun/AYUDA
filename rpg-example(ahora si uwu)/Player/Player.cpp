@@ -23,7 +23,7 @@ bool compareSpeed(Enemy *a, Enemy *b) {
     return a->getSpeed() > b->getSpeed();
 }
 
-Player::Player(string name, int health, int attack, int defense, int speed) : Character(name, health, attack, defense, speed, true) {
+Player::Player(char name[40], int health, int attack, int defense, int speed) : Character(name, health, attack, defense, speed, true) {
     experience = 0;
     level = 1;
     depression = 0;
@@ -97,8 +97,9 @@ void Player::levelUp() {
 void Player::gainExperience(int exp) {
     experience += exp;
     if (experience >= 100) {
+        int trash = experience - 100;
         levelUp();
-        experience = 0;
+        experience = trash;
     }
 }
 
@@ -144,7 +145,7 @@ Action Player::takeAction(vector<Enemy*> enemies) {
             myAction.target = target;
             myAction.action = [this, target]() {
                 doAttack(target);
-                gainExperience(33);
+                gainExperience(5);
             };
             oks = true;
             break;
