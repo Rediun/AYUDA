@@ -92,7 +92,7 @@ Action Enemy::takeAction(vector<Player*> player) {
     myAction.subscriber = this;
     Character* target = getTarget(player);
     myAction.target = target;
-    if ((this->getMaxHealth() * 0.50 >= this->getHealth()) && rand() % 100 < 50) {
+    if ((this->getMaxHealth() * 0.50 >= this->getHealth()) && rand() % 100 < 10) {
         myAction.action = [this, target]() {
             this->fleed = true;
         };

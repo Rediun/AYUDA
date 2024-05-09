@@ -1,6 +1,6 @@
 {
   "OutputFoldersPerTargetSystem": {
-    "Máquina local": [
+    "M\u00E1quina local": [
       "out\\build\\x64-Debug",
       "out\\install\\x64-Debug",
       "out\\build\\x64-Release",
@@ -15,6 +15,5 @@
     "\\out",
     "\\Player"
   ],
-  "SelectedNode": "\\Combat\\Combat.cpp",
   "PreviewInSolutionExplorer": false
 }

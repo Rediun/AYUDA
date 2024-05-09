@@ -33,6 +33,9 @@ void Player::doAttack(Character *target) {
     int rolledAttack = getRolledAttack(getAttack());
     int trueDamage = target->getDefense() > rolledAttack ? 0 : rolledAttack - target->getDefense();
     target->takeDamage(trueDamage);
+    if (target -> getHealth() <= 0) {
+        gainExperience(67);
+    }
 }
 
 void Player::takeDamage(int damage) {
@@ -146,6 +149,7 @@ Action Player::takeAction(vector<Enemy*> enemies) {
             myAction.action = [this, target]() {
                 doAttack(target);
                 gainExperience(5);
+                cout << experience << endl;
             };
             oks = true;
             break;
