@@ -16,7 +16,7 @@ private:
 public:
     Enemy(char[40], int, int, int, int, int);
     int getMaxHealth();
-    void doAttack(Character *target) override;
+    void doAttack(Character *target);
     void takeDamage(int damage) override;
     void levelup();
     Character* getTarget(vector<Player*> teamMembers);

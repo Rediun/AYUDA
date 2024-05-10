@@ -22,8 +22,6 @@ protected:
 
 public:
     Character(char[], int, int, int, int, bool, int);
-
-    virtual void doAttack(Character *target) = 0;
     virtual void takeDamage(int damage) = 0;
 
     void setName(char[]);

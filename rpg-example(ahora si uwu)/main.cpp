@@ -5,9 +5,9 @@
 
 int main() {
                                  
-    Player *player = new Player("Rediun", 20, 10, 5, 1, 1);
-    Enemy *enemy = new Enemy("Mom", 20, 6, 3, 7, 1);
-    Enemy *enemy2 = new Enemy("Dad", 30, 8, 5, 2, 1);
+    Player *player = new Player("Gringo", 20, 10, 5, 1, 1);
+    Enemy *enemy = new Enemy("Maldito SAT como te odio", 20, 6, 3, 7, 1);
+    Enemy *enemy2 = new Enemy("SATan", 30, 8, 5, 2, 1);
 
     vector<Character*> participants;
     participants.push_back(player);

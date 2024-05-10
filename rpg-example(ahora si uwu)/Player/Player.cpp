@@ -29,12 +29,12 @@ Player::Player(char name[40], int health, int attack, int defense, int speed, in
     depression = 0;
 }
 
-void Player::doAttack(Character *target) {
+void Player::doAttack(Character *target, vector<Enemy*> enemies) {
     int rolledAttack = getRolledAttack(getAttack());
     int trueDamage = target->getDefense() > rolledAttack ? 0 : rolledAttack - target->getDefense();
     target->takeDamage(trueDamage);
     if (target -> getHealth() <= 0) {
-        gainExperience(67);
+        gainExperience(67, enemies);
     }
 }
 
@@ -86,13 +86,21 @@ void Player::emote() {
     cout<<"Jokes on you" << endl;
 }
 
-void Player::levelUp() {
+void Player::levelUp(vector<Enemy*> enemies) {
+    int i;
+    int hppls = getHealth() * .50;
+    int atkpls = getAttack() * .50;
+    int defpls = getDefense() * .50;
+    int spdpls = getSpeed() * .50;
     setLevel(getLevel() + 1);
-    setHealth(getHealth() + 10);
-    setAttack(getAttack() + 5);
-    setDefense(getDefense() + 5);
-    setSpeed(getSpeed() + 5);
+    setHealth(getHealth() + hppls);
+    setAttack(getAttack() + atkpls);
+    setDefense(getDefense() + defpls);
+    setSpeed(getSpeed() + spdpls);
 
+    for (i = 0; i < enemies.size(); i++) {
+        enemies[i]->levelup();
+    }
 
 
     cout << YELLOW << "\t>>>>>>>>> Level up bro!!!! Your level current: " << getLevel() << " <<<<<<<<<<<<" << RESET << endl;
@@ -101,11 +109,11 @@ void Player::levelUp() {
 
 }
 
-void Player::gainExperience(int exp) {
+void Player::gainExperience(int exp, vector<Enemy*> enemies) {
     experience += exp;
     if (experience >= 100) {
         int trash = experience - 100;
-        levelUp();
+        levelUp(enemies);
         experience = trash;
     }
 }
@@ -113,7 +121,7 @@ void Player::gainExperience(int exp) {
 Character* Player::getTarget(vector<Enemy*> enemies) {
     int targetIndex = 0;
     while (true) {
-        cout << "Choose your Victim <<<<" << endl;
+        cout << "Choose your Problem <<<<" << endl;
         for (int i = 0; i < enemies.size(); i++) {
             cout << i  << ". " << enemies[i]->getName() << endl;
         } 
@@ -140,7 +148,7 @@ Action Player::takeAction(vector<Enemy*> enemies) {
     myAction.subscriber = this;
 
     while (oks == false){
-        cout << "Choose your action <<<<<<<<<<<<" << endl;
+        cout << "Choose your action, wathever <<<<<<<<<<<<" << endl;
         cout << "1. Attack" << endl;
         cout << "2. Flee" << endl;
         cout << "> ";
@@ -150,11 +158,9 @@ Action Player::takeAction(vector<Enemy*> enemies) {
         case 1:
             target = getTarget(enemies);
             myAction.target = target;
-            myAction.action = [this, target]() {
-                doAttack(target);
-                gainExperience(30);
-                cout << experience << endl;
-                cout << getLevel() << endl;
+            myAction.action = [this, target, enemies]() {
+                doAttack(target, enemies);
+                gainExperience(30, enemies);
             };
             oks = true;
             break;
@@ -183,7 +189,7 @@ void Player::Depression(int depre){
 void Player::Suicide() {
         setHealth(getHealth() == 0);
         cout << "\n"; 
-        cout << "\t>>>>>>> You, just kill yourself..XD <<<<<<<" << endl;
+        cout << "\t>>>>>>> You, just kill yourself, try to not listen radiohead to much <<<<<<<" << endl;
         cout << "\n";
         cin.get();
         exit(-1);

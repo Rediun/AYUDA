@@ -61,13 +61,11 @@ void Enemy::takeDamage(int damage) {
             if (wow = false) {
                 cout << GREEN << "\t---->" << getName() << " has taken " << damage << " damage" << "<----" << RESET << endl;
                 cout << "\n\n";
-                cout << level << endl;
                 cin.get();
             }
             if (wow = true) {
                 cout << GREEN << "\t----> " << getName() << " has taken " << damage << " damage" << " <----" << " [Nice Hit bro]" << RESET << endl;
                 cout << "\n\n";
-                cout << getLevel() << endl;
                 cin.get();
             }
         }
@@ -110,14 +108,18 @@ Action Enemy::takeAction(vector<Player*> player) {
 }
 
 void Enemy::levelup() {
+    int hppls = this -> getHealth() * .50;
+    int atkpls = this-> getAttack() * .50;
+    int defpls = this-> getDefense() * .50;
+    int spdpls = this-> getSpeed() * .50;
         this-> setLevel(getLevel() + 1);
-        this -> setHealth(getHealth() + 3);
-        this-> setAttack(getAttack() + 2);
-        this-> setDefense(getDefense() + 2);
-        this-> setSpeed(getSpeed() + 2);
+        this -> setHealth(getHealth() + hppls);
+        this-> setAttack(getAttack() + atkpls);
+        this-> setDefense(getDefense() + defpls);
+        this-> setSpeed(getSpeed() + spdpls);
 
 
-        cout << RED << "\t>>>>>>>>> The enemy just level up bro!!!! u are gey lvl: " << getLevel() << " <<<<<<<<<<<<" << RESET << endl;
+        cout << RED << "\t>>>>>>>>> The enemy [" << MAGENTA << getName() << RESET << RED << "] just level up bro!!!!level current to destroy you : " << getLevel() << " <<<<<<<<<<<<" << RESET << endl;
         cout << "\n\n";
     }
 

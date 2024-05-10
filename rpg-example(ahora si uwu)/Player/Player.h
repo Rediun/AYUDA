@@ -18,15 +18,15 @@ protected:
     int depression;
 public:
     Player(char _name[40], int _health, int _attack, int _defense, int _speed, int _level);
-    void doAttack(Character *target) override;
+    void doAttack(Character *target, vector<Enemy*> enemies);
     void takeDamage(int damage) override;
 
     Character* getTarget(vector<Enemy*> enemies);
 
     void flee(vector<Enemy*> enemies);
     void emote();
-    void levelUp();
-    void gainExperience(int);
+    void levelUp(vector<Enemy*> enemies);
+    void gainExperience(int, vector<Enemy*> enemies);
     Action takeAction(vector<Enemy*> enemies);
 
     void Suicide();
